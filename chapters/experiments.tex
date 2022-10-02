@@ -1,0 +1,37 @@
+\chapter{Test e valutazioni}
+		In questo capitolo verranno descritti i test effettuati, i criteri utilizzati per la valutazione e verranno comparati le tre riduzioni spettrali proposte: SWS, noise vocoded speech e buzz vocoded speech.
+		
+		\section{Dataset}
+		È stato utilizzato il dataset fornito dalla VCC2018 (Voice Conversion Challenge 2018) in quanto riferimento principale per le performance di voice conversion.
+		
+		Il dataset è formato da 8 source speaker e 4 target speaker, a ciascuno di essi corrispondono 81 audio di frasi lette (in totale circa 5 minuti di durata) con frequenza di campionamento a 22.05 kHz. Al fine di lavorare su dati non paralleli, è necessario effettuare le conversioni proposte dal task "Spoke" della VCC2018.
+		
+		Sono stati usati un sottoinsieme di speaker in modo da testare conversioni tra generi differenti e tra lo stesso genere, elencate a seguire:
+		\begin{itemize}
+			\item VCC2SF3 $\rightarrow$ VCC2TF1 (F$\rightarrow$F)
+			\item VCC2SF3 $\rightarrow$ VCC2TM1 (F$\rightarrow$M)
+			\item VCC2SM3 $\rightarrow$ VCC2TF1 (M$\rightarrow$F)
+			\item VCC2SM3 $\rightarrow$ VCC2TM1 (M$\rightarrow$M)
+		\end{itemize}
+		I nomi corrispondono a quelli assegnati internamente del dataset e descrivono il genere (M, F) e l'appartenenza all'insieme di source (S) o target (T).
+		
+		\section{Training}
+		Il dataset è stato processato come descritto nel \autoref{chap:architettura-proposta}. In particolare sono stati predisposti quattro test separati per valutare le seguenti rappresentazioni: nessuna riduzione spettrale, vocoder con noise carrier, vocoder con buzz carrier (500 Hz) e sine-wave speech con 5 formanti.
+		
+		Le reti sono state trainate per 150k iterazioni seguendo le specifiche della MaskCycleGAN-VC ovvero usando un ottimizzatore Adam, con learning rate impostato a 0.0002 per il generatore e 0.0001 per il discriminatore e momentum $\beta1$ e $\beta2$ rispettivamente 0.5 e 0.999. La batch size è stata impostata a 1, dove ogni sample consiste in 64 frame tagliati casualmente. La maschera applicata sull'input è stata impostata a 25.
+		
+		\section{Metodi di valutazione}
+		Esistono varie metriche per la valutazione oggettiva della voice conversion, in questo lavoro si valuteranno come per la MaskCycleGAN-VC le seguenti: mel-cepstral distortion (MCD)\cite{mel-cepstral-distance} e Kernel DeepSpeech Distance (KDSD)\cite{kdsd}.
+		
+		La MCD misura la variazione di spettro, di conseguenza non è necessariamente correlata con la naturalezza del suono, mentre la KDSD misura la distanza tra le feature degli audio reali e quelli generati e ha dimostrato una correlazione con la valutazione effettuata da persone.
+		Data la natura di queste misurazioni, una conversione è considerabile migliore quando queste metriche hanno risultato più basso.
+		
+		Verrà inoltre impiegata una MOSNet\cite{mosnet} pre-trainata per ottenere una stima di riferimento per quanto riguarda la valutazione soggettiva. Esso è un modello che, basandosi sulle opinioni reali fornite da ascoltatori alle submission effettuate alla VCC2018, è stato addestrato a predire valutazioni soggettive MOS (mean opinion score) e ha dimostrato una forte correlazione con i voti effettivi delle persone. La valutazione è espressa, come per la MOS, in una valutazione nell'intervallo [1,5] dove 1 significa una bassa qualità e 5 un'ottima qualità.
+		
+		\section{Risultati}
+		Si riportano a seguire i risultati ottenuti dalle conversioni di voci.
+		Vengono riportate le valutazioni basate sulle scale MCD, KDSD e MOSNet delle quattro conversioni effettuate per ciascuna tipologia di dati usata come input della rete.
+		
+		Per ogni tipologia di conversione (es. F$\rightarrow$M) sono stati messi in evidenza i risultati migliori per ciascuna metrica. Risulta interessante notare come il metodo originale \cite{MaskCyclegan-VC} senza riduzioni di spettro, ottenga ottime risultati per la metrica di KDSD, mentre le conversioni effettuate con le  riduzioni di spettro ottengono punteggi migliori per le metriche di MCD e MOSNet.
+		
+		\input{graphs/results.tex}

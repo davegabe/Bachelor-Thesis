@@ -1,0 +1,80 @@
+% !TeX encoding = UTF-8
+% !TeX program = pdflatex
+% !TeX spellcheck = it_IT
+\documentclass[binding=0.6cm,noexaminfo]{sapthesis}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{microtype}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{booktabs, multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{threeparttable,booktabs}
+%\usepackage{refcheck}
+%\nocite{*}
+\hypersetup{pdftitle={Un Approccio alla Voice Conversion a Spettro Ridotto attraverso la Sine-Wave Speech},pdfauthor={Davide Gabrielli}}
+\title{Un Approccio alla Voice Conversion a Spettro Ridotto attraverso la Sine-Wave Speech}
+\author{Davide Gabrielli}
+\IDnumber{1883616}
+\course{Laurea Triennale in Informatica}
+\courseorganizer{Facoltà di Ingegneria dell’Informazione, Informatica e Statistica}
+\AcademicYear{2021/2022}
+\advisor{Prof. Danilo Avola}
+\coadvisor{
+	Prof. Luigi Cinque \\
+	Dr. Daniele Pannone
+}
+\authoremail{gabrielli.1883616@studenti.uniroma1.it}
+\copyyear{2022}
+\thesistype{Tesi di Laurea Triennale}
+\begin{document}
+	\frontmatter
+	\maketitle
+	
+	\dedication{
+		Ai miei genitori e mia sorella,\\
+		che mi hanno da sempre supportato\\
+		e dovuto ascoltare ogni mia spiegazione non richiesta di tutto questo.\\ \vspace{5mm}
+		A Fiorella,\\
+		che mi ha insegnato a scrivere in italiano, o che almeno ci ha provato,\\
+		e mi ha detto sempre le cose giuste per tranquillizzarmi.\\ \vspace{5mm}
+		Ai miei amici,\\
+		che mi hanno sostenuto\\
+		e dato modo di vedere ogni tanto luci diverse da quelle del monitor.\\ \vspace{5mm}
+		Al mio gatto Luna,\\
+		che mi ha sempre fatto compagnia nelle notti insonni a scrivere\\
+		(a differenza di Maya che se la dormiva).
+	}
+	\begin{abstract}
+	L'idea per cui sia possibile disaccoppiare il contenuto linguistico dall'identità vocale è ricorrente all'interno di varie aree dello speech processing. Si può infatti considerare la voce come la somma di due componenti: una acustica, dipendente dall'interlocutore, e una linguistica, indipendente dall'interlocutore.
+	
+	Questa tesi ha lo scopo di introdurre nel campo della voice conversion un approccio che sfrutti codifiche audio a spettro ridotto al fine di ridurre la componente acustica. Per tale scopo verranno impiegate delle rappresentazioni in sine-wave speech e in vocoded speech, che in letteratura scientifica hanno dimostrato di preservare l'intelligibilità nonostante la forte alterazione dello spettro sonoro.	
+	\end{abstract}
+	\tableofcontents
+	\mainmatter
+	
+	\input{chapters/introduction.tex}
+	
+	\input{chapters/audio.tex}
+	
+	\input{chapters/deep-learning.tex}		
+		
+	\input{chapters/architecture.tex}
+	
+	\input{chapters/experiments.tex}
+
+	\input{chapters/conclusions.tex}
+	
+	\backmatter
+
+	\cleardoublepage
+	\phantomsection % Give this command only if hyperref is loaded
+	\addcontentsline{toc}{chapter}{\bibname}
+	% Here put the code for the bibliography. You can use BibTeX or
+	% the BibLaTeX package or the simple environment thebibliography.
+	\bibliographystyle{plain} % We choose the "plain" reference style
+	\bibliography{tesi} % Entries are in the tesi
+\end{document}

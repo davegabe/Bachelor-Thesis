@@ -1,0 +1,28 @@
+\def\arraystretch{1.3}
+\begin{table}[h]
+	\centering
+	\begin{threeparttable}
+	\begin{tabular*} {\textwidth}{c @{\extracolsep{\fill}} llccc}
+		\toprule
+		\textbf{Riduzione spettro}\tnote{a}         & \textbf{Valutazione} & \textbf{F$\rightarrow$F} & \textbf{F$\rightarrow$M} & \textbf{M$\rightarrow$F} & \textbf{M$\rightarrow$M} \\ \hline
+		\multirow{3}{*}{Nessuna riduzione \tnote{b}}        & MCD (dB) & 6.61          & 6.57          & 6.98          & 6.89          \\
+		& KDSD     & \textbf{2074} & \textbf{1755} & \textbf{2770} & \textbf{1583} \\
+		& MOSNet   & 3.84          & 4.46          & 3.92          & 4.58          \\ \hline
+		\multirow{3}{*}{Noise vocoded\tnote{c}}     & MCD [dB] & 6.53          & \textbf{6.47} & 6.75          & 6.73          \\
+		& KDSD [$\times 10^5$]     & 3269          & 2247          & 3446          & 2032          \\
+		& MOSNet   & 3.90          & 4.46          & 3.89          & 4.49          \\ \hline
+		\multirow{3}{*}{Buzz vocoded\tnote{c}}  & MCD [dB]             & \textbf{6.49}              & 6.49                       & \textbf{6.70}              & \textbf{6.71}              \\
+		& KDSD [$\times 10^5$]     & 3063          & 2155          & 3169          & 1823          \\
+		& MOSNet   & 3.80          & 4.47          & \textbf{3.94} & 4.53          \\ \hline
+		\multirow{3}{*}{Sine-wave speech\tnote{c}}  & MCD [dB] & 6.55          & 6.55          & 6.98          & 6.78          \\
+		& KDSD [$\times 10^5$]     & 3513          & 2621          & 4802          & 2492          \\
+		& MOSNet   & \textbf{3.91} & \textbf{4.48} & 3.86          & \textbf{4.61} \\
+		\bottomrule
+	\end{tabular*}
+	\begin{tablenotes}
+		\item[a] Modulo di riduzione dello spettro applicato sui dati di input.
+		\item[b] Nessuna riduzione spettrale applicata, modello trainato come proposta da Kaneko et al. in \cite{MaskCyclegan-VC}.
+		\item[c] Metodi di riduzione spettrale proposti, come descritti nella \autoref{sec:proposta-riduzione}.
+	\end{tablenotes}
+\end{threeparttable}
+\end{table}
