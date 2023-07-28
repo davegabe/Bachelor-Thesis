@@ -14,5 +14,5 @@ The architecture of the proposed methods is based on the **MaskCycleGAN** model 
 ![Architecture](figures/MaskCycleGAN-SWS-VC.png)
 
 # More details
-In order to get more details about the proposed methods, please refer to the [thesis](tesi.pdf).
+In order to get more details about the proposed methods, please refer to the [thesis](tesi.pdf) or to the [slides](slides/tesi-slides.pdf).
 Actually, the thesis is written in Italian, but I'm working on the English translation.
